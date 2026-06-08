@@ -1,0 +1,54 @@
+import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-ethers";
+import "@nomicfoundation/hardhat-chai-matchers";
+import "@nomicfoundation/hardhat-verify";
+import "hardhat-gas-reporter";
+
+const config: HardhatUserConfig = {
+  solidity: {
+    version: "0.8.22",
+    settings: { optimizer: { enabled: true, runs: 200 } },
+  },
+  networks: {
+    hardhat: {},
+    base: {
+      url: process.env.BASE_RPC_URL ?? "https://mainnet.base.org",
+      accounts: process.env.DEPLOYER_PRIVATE_KEY
+        ? [process.env.DEPLOYER_PRIVATE_KEY]
+        : [],
+    },
+    "base-sepolia": {
+      url: "https://sepolia.base.org",
+      accounts: process.env.DEPLOYER_PRIVATE_KEY
+        ? [process.env.DEPLOYER_PRIVATE_KEY]
+        : [],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      base: process.env.ETHERSCAN_API_KEY ?? "",
+      "base-sepolia": process.env.ETHERSCAN_API_KEY ?? "",
+    },
+    customChains: [
+      {
+        network: "base",
+        chainId: 8453,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api?chainid=8453",
+          browserURL: "https://basescan.org",
+        },
+      },
+      {
+        network: "base-sepolia",
+        chainId: 84532,
+        urls: {
+          apiURL: "https://api.etherscan.io/v2/api?chainid=84532",
+          browserURL: "https://sepolia.basescan.org",
+        },
+      },
+    ],
+  },
+  gasReporter: { enabled: true, currency: "USD" },
+};
+
+export default config;
