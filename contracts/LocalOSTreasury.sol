@@ -19,7 +19,7 @@ contract LocalOSTreasury {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "LocalOSTreasury: not owner");
+        require(msg.sender == owner, "LocalOSTreasury: caller is not the owner");
         _;
     }
 

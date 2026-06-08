@@ -40,7 +40,10 @@ LocalOSTreasury is the final destination for all USDC collected. The owner walle
 ## Contract: LocalOSTreasury
 
 Network: Base mainnet
+Address: 0x9FFb768F76B657b94c0a4cC42dDAc51BB4cEfD02
+Basescan: https://basescan.org/address/0x9FFb768F76B657b94c0a4cC42dDAc51BB4cEfD02
 Compiler: Solidity 0.8.22
+License: MIT
 Pattern: non-upgradable (no proxy)
 Payment token: USDC at 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
 
@@ -115,7 +118,7 @@ pnpm run verify:mainnet <deployed_address> <owner_address>
 
 ## Architecture decision
 
-LocalOSTreasury is intentionally non-upgradable. There is no proxy, no admin key that can swap the implementation, and no upgrade function. If payment logic needs changing in the future, a new contract is deployed and the relay worker's CONTRACT_ADDRESS environment variable is updated. This makes the contract simple, auditable, and trustless.
+LocalOSTreasury is intentionally non-upgradable. There is no proxy, no admin key that can swap the implementation, and no upgrade function. If payment logic needs changing in the future, a new contract is deployed and the relay worker's TREASURY_ADDRESS environment variable is updated. This makes the contract simple, auditable, and trustless.
 
 ---
 

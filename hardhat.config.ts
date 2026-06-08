@@ -25,10 +25,7 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    apiKey: {
-      base: process.env.ETHERSCAN_API_KEY ?? "",
-      "base-sepolia": process.env.ETHERSCAN_API_KEY ?? "",
-    },
+    apiKey: process.env.ETHERSCAN_API_KEY ?? "",
     customChains: [
       {
         network: "base",
